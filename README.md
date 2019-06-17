@@ -3,7 +3,9 @@ JfrRestTemplate
 
 An implementation of Spring [RestTemplate](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html) that generates [Flight Recorder](https://openjdk.java.net/jeps/328) events.
 
-This project requires Java 11 based on OpenJDK or later.
+
+![Flight Recording of some HTTP requests](https://github.com/marschall/catalina-resttemplate/raw/master/src/main/javadoc/Screenshot.png)
+
 
 ```xml
 <dependency>
@@ -12,6 +14,8 @@ This project requires Java 11 based on OpenJDK or later.
   <version>0.1.0-SNAPSHOT</version>
 </dependency>
 ```
+
+This project requires Java 11 based on OpenJDK or later.
 
 Overhead
 --------
