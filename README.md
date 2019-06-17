@@ -1,4 +1,4 @@
-JfrRestTemplate
+JfrRestTemplate [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-resttemplate/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-resttemplate) [![Javadocs](https://www.javadoc.io/badge/com.github.marschall/jfr-resttemplate.svg)](https://www.javadoc.io/doc/com.github.marschall/jfr-resttemplate)
 ===============
 
 An implementation of Spring [RestTemplate](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html) that generates [Flight Recorder](https://openjdk.java.net/jeps/328) events.
