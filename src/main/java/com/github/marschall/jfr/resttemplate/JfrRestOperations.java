@@ -40,6 +40,7 @@ public final class JfrRestOperations implements RestOperations {
     this.delegate = delegate;
   }
 
+  @Override
   public <T> T getForObject(String url, Class<T> responseType, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -48,13 +49,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.getForObject(url, responseType, uriVariables);
+      return this.delegate.getForObject(url, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> T getForObject(String url, Class<T> responseType, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -63,13 +65,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.getForObject(url, responseType, uriVariables);
+      return this.delegate.getForObject(url, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> T getForObject(URI url, Class<T> responseType) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -78,13 +81,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.getForObject(url, responseType);
+      return this.delegate.getForObject(url, responseType);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> getForEntity(String url, Class<T> responseType, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -93,13 +97,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.getForEntity(url, responseType, uriVariables);
+      return this.delegate.getForEntity(url, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> getForEntity(String url, Class<T> responseType, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -108,13 +113,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.getForEntity(url, responseType, uriVariables);
+      return this.delegate.getForEntity(url, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> getForEntity(URI url, Class<T> responseType) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -123,13 +129,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.getForEntity(url, responseType);
+      return this.delegate.getForEntity(url, responseType);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public HttpHeaders headForHeaders(String url, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -138,13 +145,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(HttpHeaders.class);
     event.begin();
     try {
-      return delegate.headForHeaders(url, uriVariables);
+      return this.delegate.headForHeaders(url, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public HttpHeaders headForHeaders(String url, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -153,13 +161,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(HttpHeaders.class);
     event.begin();
     try {
-      return delegate.headForHeaders(url, uriVariables);
+      return this.delegate.headForHeaders(url, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public HttpHeaders headForHeaders(URI url) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -168,13 +177,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(HttpHeaders.class);
     event.begin();
     try {
-      return delegate.headForHeaders(url);
+      return this.delegate.headForHeaders(url);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public URI postForLocation(String url, Object request, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -183,13 +193,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(URI.class);
     event.begin();
     try {
-      return delegate.postForLocation(url, request, uriVariables);
+      return this.delegate.postForLocation(url, request, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public URI postForLocation(String url, Object request, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -198,13 +209,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(URI.class);
     event.begin();
     try {
-      return delegate.postForLocation(url, request, uriVariables);
+      return this.delegate.postForLocation(url, request, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public URI postForLocation(URI url, Object request) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -213,13 +225,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(URI.class);
     event.begin();
     try {
-      return delegate.postForLocation(url, request);
+      return this.delegate.postForLocation(url, request);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> T postForObject(String url, Object request, Class<T> responseType, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -228,13 +241,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.postForObject(url, request, responseType, uriVariables);
+      return this.delegate.postForObject(url, request, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> T postForObject(String url, Object request, Class<T> responseType, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -243,13 +257,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.postForObject(url, request, responseType, uriVariables);
+      return this.delegate.postForObject(url, request, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> T postForObject(URI url, Object request, Class<T> responseType) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -258,13 +273,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.postForObject(url, request, responseType);
+      return this.delegate.postForObject(url, request, responseType);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> postForEntity(String url, Object request, Class<T> responseType, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -273,13 +289,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.postForEntity(url, request, responseType, uriVariables);
+      return this.delegate.postForEntity(url, request, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> postForEntity(String url, Object request, Class<T> responseType, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -288,13 +305,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.postForEntity(url, request, responseType, uriVariables);
+      return this.delegate.postForEntity(url, request, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> postForEntity(URI url, Object request, Class<T> responseType) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -303,13 +321,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.postForEntity(url, request, responseType);
+      return this.delegate.postForEntity(url, request, responseType);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public void put(String url, Object request, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -318,13 +337,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Void.class);
     event.begin();
     try {
-      delegate.put(url, request, uriVariables);
+      this.delegate.put(url, request, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public void put(String url, Object request, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -333,13 +353,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Void.class);
     event.begin();
     try {
-      delegate.put(url, request, uriVariables);
+      this.delegate.put(url, request, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public void put(URI url, Object request) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -348,13 +369,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Void.class);
     event.begin();
     try {
-      delegate.put(url, request);
+      this.delegate.put(url, request);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> T patchForObject(String url, Object request, Class<T> responseType, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -363,13 +385,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.patchForObject(url, request, responseType, uriVariables);
+      return this.delegate.patchForObject(url, request, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> T patchForObject(String url, Object request, Class<T> responseType, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -378,13 +401,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.patchForObject(url, request, responseType, uriVariables);
+      return this.delegate.patchForObject(url, request, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> T patchForObject(URI url, Object request, Class<T> responseType) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -393,13 +417,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.patchForObject(url, request, responseType);
+      return this.delegate.patchForObject(url, request, responseType);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public void delete(String url, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -408,13 +433,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Void.class);
     event.begin();
     try {
-      delegate.delete(url, uriVariables);
+      this.delegate.delete(url, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public void delete(String url, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -423,13 +449,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Void.class);
     event.begin();
     try {
-      delegate.delete(url, uriVariables);
+      this.delegate.delete(url, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public void delete(URI url) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -438,13 +465,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Void.class);
     event.begin();
     try {
-      delegate.delete(url);
+      this.delegate.delete(url);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public Set<HttpMethod> optionsForAllow(String url, Object... uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -453,13 +481,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Set.class);
     event.begin();
     try {
-      return delegate.optionsForAllow(url, uriVariables);
+      return this.delegate.optionsForAllow(url, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public Set<HttpMethod> optionsForAllow(String url, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
     event.setUri(url);
@@ -468,13 +497,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Set.class);
     event.begin();
     try {
-      return delegate.optionsForAllow(url, uriVariables);
+      return this.delegate.optionsForAllow(url, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public Set<HttpMethod> optionsForAllow(URI url) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -483,13 +513,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Set.class);
     event.begin();
     try {
-      return delegate.optionsForAllow(url);
+      return this.delegate.optionsForAllow(url);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> exchange(String url, HttpMethod method, HttpEntity<?> requestEntity,
       Class<T> responseType, Object... uriVariables) {
     RestEvent event = new RestEvent();
@@ -499,13 +530,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      return this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> exchange(String url, HttpMethod method, HttpEntity<?> requestEntity,
       Class<T> responseType, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
@@ -515,13 +547,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      return this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> exchange(URI url, HttpMethod method, HttpEntity<?> requestEntity, Class<T> responseType) {
     RestEvent event = new RestEvent();
     event.setUri(url.toString());
@@ -530,13 +563,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.exchange(url, method, requestEntity, responseType);
+      return this.delegate.exchange(url, method, requestEntity, responseType);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> exchange(String url, HttpMethod method, HttpEntity<?> requestEntity,
       ParameterizedTypeReference<T> responseType, Object... uriVariables) {
     RestEvent event = new RestEvent();
@@ -546,13 +580,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(extractResponseType(responseType));
     event.begin();
     try {
-      return delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      return this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> exchange(String url, HttpMethod method, HttpEntity<?> requestEntity,
       ParameterizedTypeReference<T> responseType, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
@@ -562,13 +597,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(extractResponseType(responseType));
     event.begin();
     try {
-      return delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      return this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> exchange(URI url, HttpMethod method, HttpEntity<?> requestEntity,
       ParameterizedTypeReference<T> responseType) {
     RestEvent event = new RestEvent();
@@ -578,13 +614,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(extractResponseType(responseType));
     event.begin();
     try {
-      return delegate.exchange(url, method, requestEntity, responseType);
+      return this.delegate.exchange(url, method, requestEntity, responseType);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> exchange(RequestEntity<?> requestEntity, Class<T> responseType) {
     RestEvent event = new RestEvent();
     event.setUri(requestEntity.getUrl().toString());
@@ -593,13 +630,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return delegate.exchange(requestEntity, responseType);
+      return this.delegate.exchange(requestEntity, responseType);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> ResponseEntity<T> exchange(RequestEntity<?> requestEntity, ParameterizedTypeReference<T> responseType) {
     RestEvent event = new RestEvent();
     event.setUri(requestEntity.getUrl().toString());
@@ -608,13 +646,14 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(extractResponseType(responseType));
     event.begin();
     try {
-      return delegate.exchange(requestEntity, responseType);
+      return this.delegate.exchange(requestEntity, responseType);
     } finally {
       event.end();
       event.commit();
     }
   }
 
+  @Override
   public <T> T execute(String url, HttpMethod method, RequestCallback requestCallback,
       ResponseExtractor<T> responseExtractor, Object... uriVariables) {
     RestEvent event = new RestEvent();
@@ -623,7 +662,7 @@ public final class JfrRestOperations implements RestOperations {
     event.setOperationName("exchange");
     event.begin();
     try {
-      T response = delegate.execute(url, method, requestCallback, responseExtractor, uriVariables);
+      T response = this.delegate.execute(url, method, requestCallback, responseExtractor, uriVariables);
       if (response != null) {
         event.setResponseType(response.getClass());
       }
@@ -634,6 +673,7 @@ public final class JfrRestOperations implements RestOperations {
     }
   }
 
+  @Override
   public <T> T execute(String url, HttpMethod method, RequestCallback requestCallback,
       ResponseExtractor<T> responseExtractor, Map<String, ?> uriVariables) {
     RestEvent event = new RestEvent();
@@ -642,7 +682,7 @@ public final class JfrRestOperations implements RestOperations {
     event.setOperationName("exchange");
     event.begin();
     try {
-      T response = delegate.execute(url, method, requestCallback, responseExtractor, uriVariables);
+      T response = this.delegate.execute(url, method, requestCallback, responseExtractor, uriVariables);
       if (response != null) {
         event.setResponseType(response.getClass());
       }
@@ -653,6 +693,7 @@ public final class JfrRestOperations implements RestOperations {
     }
   }
 
+  @Override
   public <T> T execute(URI url, HttpMethod method, RequestCallback requestCallback,
       ResponseExtractor<T> responseExtractor) {
     RestEvent event = new RestEvent();
@@ -661,7 +702,7 @@ public final class JfrRestOperations implements RestOperations {
     event.setOperationName("exchange");
     event.begin();
     try {
-      T response = delegate.execute(url, method, requestCallback, responseExtractor);
+      T response = this.delegate.execute(url, method, requestCallback, responseExtractor);
       if (response != null) {
         event.setResponseType(response.getClass());
       }
@@ -671,7 +712,7 @@ public final class JfrRestOperations implements RestOperations {
       event.commit();
     }
   }
-  
+
   private static Class<?> extractResponseType(ParameterizedTypeReference<?> responseType) {
     Type type = responseType.getType();
     if (type instanceof Class) {
@@ -686,17 +727,17 @@ public final class JfrRestOperations implements RestOperations {
     }
     return null;
   }
-  
+
 
   @Label("Operation")
   @Description("A REST Operation")
   @Category("Spring REST")
   static class RestEvent extends Event {
-    
+
     @Label("Method")
     @Description("The name of the HTTP method")
     private String method;
-    
+
     @Label("URI")
     @Description("The HTTP URI")
     private String uri;
@@ -704,7 +745,7 @@ public final class JfrRestOperations implements RestOperations {
     @Label("Operation Name")
     @Description("The name of the REST operation")
     private String operationName;
-    
+
     @Label("Response Type")
     @Description("The response type")
     private Class<?> responseType;
@@ -718,7 +759,7 @@ public final class JfrRestOperations implements RestOperations {
     }
 
     String getMethod() {
-      return method;
+      return this.method;
     }
 
     void setMethod(String method) {
@@ -726,7 +767,7 @@ public final class JfrRestOperations implements RestOperations {
     }
 
     String getUri() {
-      return uri;
+      return this.uri;
     }
 
     void setUri(String uri) {
@@ -734,7 +775,7 @@ public final class JfrRestOperations implements RestOperations {
     }
 
     Class<?> getResponseType() {
-      return responseType;
+      return this.responseType;
     }
 
     void setResponseType(Class<?> responseType) {

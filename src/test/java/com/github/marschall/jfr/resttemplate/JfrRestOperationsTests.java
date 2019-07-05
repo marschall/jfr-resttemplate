@@ -1,6 +1,6 @@
 package com.github.marschall.jfr.resttemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigInteger;
 
