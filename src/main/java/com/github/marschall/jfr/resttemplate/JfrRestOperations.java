@@ -1,8 +1,10 @@
 package com.github.marschall.jfr.resttemplate;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.URI;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -49,7 +51,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.getForObject(url, responseType, uriVariables);
+      T object = this.delegate.getForObject(url, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(object));
+      return object;
     } finally {
       event.end();
       event.commit();
@@ -65,7 +69,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.getForObject(url, responseType, uriVariables);
+      T object = this.delegate.getForObject(url, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(object));
+      return object;
     } finally {
       event.end();
       event.commit();
@@ -81,7 +87,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.getForObject(url, responseType);
+      T object = this.delegate.getForObject(url, responseType);
+      event.setObjectCount(getObjectCount(object));
+      return object;
     } finally {
       event.end();
       event.commit();
@@ -97,7 +105,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.getForEntity(url, responseType, uriVariables);
+      ResponseEntity<T> entity = this.delegate.getForEntity(url, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -113,7 +123,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.getForEntity(url, responseType, uriVariables);
+      ResponseEntity<T> entity = this.delegate.getForEntity(url, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -129,7 +141,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.getForEntity(url, responseType);
+      ResponseEntity<T> entity = this.delegate.getForEntity(url, responseType);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -145,7 +159,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(HttpHeaders.class);
     event.begin();
     try {
-      return this.delegate.headForHeaders(url, uriVariables);
+      HttpHeaders headers = this.delegate.headForHeaders(url, uriVariables);
+      event.setObjectCount(headers.size());
+      return headers;
     } finally {
       event.end();
       event.commit();
@@ -161,7 +177,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(HttpHeaders.class);
     event.begin();
     try {
-      return this.delegate.headForHeaders(url, uriVariables);
+      HttpHeaders headers = this.delegate.headForHeaders(url, uriVariables);
+      event.setObjectCount(headers.size());
+      return headers;
     } finally {
       event.end();
       event.commit();
@@ -177,7 +195,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(HttpHeaders.class);
     event.begin();
     try {
-      return this.delegate.headForHeaders(url);
+      HttpHeaders headers = this.delegate.headForHeaders(url);
+      event.setObjectCount(headers.size());
+      return headers;
     } finally {
       event.end();
       event.commit();
@@ -241,7 +261,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.postForObject(url, request, responseType, uriVariables);
+      T object = this.delegate.postForObject(url, request, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(object));
+      return object;
     } finally {
       event.end();
       event.commit();
@@ -257,7 +279,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.postForObject(url, request, responseType, uriVariables);
+      T object = this.delegate.postForObject(url, request, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(object));
+      return object;
     } finally {
       event.end();
       event.commit();
@@ -273,7 +297,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.postForObject(url, request, responseType);
+      T object = this.delegate.postForObject(url, request, responseType);
+      event.setObjectCount(getObjectCount(object));
+      return object;
     } finally {
       event.end();
       event.commit();
@@ -289,7 +315,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.postForEntity(url, request, responseType, uriVariables);
+      ResponseEntity<T> entity = this.delegate.postForEntity(url, request, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -305,7 +333,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.postForEntity(url, request, responseType, uriVariables);
+      ResponseEntity<T> entity = this.delegate.postForEntity(url, request, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -321,7 +351,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.postForEntity(url, request, responseType);
+      ResponseEntity<T> entity = this.delegate.postForEntity(url, request, responseType);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -385,7 +417,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.patchForObject(url, request, responseType, uriVariables);
+      T object = this.delegate.patchForObject(url, request, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(object));
+      return object;
     } finally {
       event.end();
       event.commit();
@@ -401,7 +435,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.patchForObject(url, request, responseType, uriVariables);
+      T object = this.delegate.patchForObject(url, request, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(object));
+      return object;
     } finally {
       event.end();
       event.commit();
@@ -417,7 +453,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.patchForObject(url, request, responseType);
+      T object = this.delegate.patchForObject(url, request, responseType);
+      event.setObjectCount(getObjectCount(object));
+      return object;
     } finally {
       event.end();
       event.commit();
@@ -481,7 +519,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Set.class);
     event.begin();
     try {
-      return this.delegate.optionsForAllow(url, uriVariables);
+      Set<HttpMethod> allow = this.delegate.optionsForAllow(url, uriVariables);
+      event.setObjectCount(allow.size());
+      return allow;
     } finally {
       event.end();
       event.commit();
@@ -497,7 +537,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Set.class);
     event.begin();
     try {
-      return this.delegate.optionsForAllow(url, uriVariables);
+      Set<HttpMethod> allow = this.delegate.optionsForAllow(url, uriVariables);
+      event.setObjectCount(allow.size());
+      return allow;
     } finally {
       event.end();
       event.commit();
@@ -513,7 +555,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(Set.class);
     event.begin();
     try {
-      return this.delegate.optionsForAllow(url);
+      Set<HttpMethod> allow = this.delegate.optionsForAllow(url);
+      event.setObjectCount(allow.size());
+      return allow;
     } finally {
       event.end();
       event.commit();
@@ -530,7 +574,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      ResponseEntity<T> entity = this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -547,7 +593,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      ResponseEntity<T> entity = this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -563,7 +611,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.exchange(url, method, requestEntity, responseType);
+      ResponseEntity<T> entity = this.delegate.exchange(url, method, requestEntity, responseType);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -580,7 +630,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(extractResponseType(responseType));
     event.begin();
     try {
-      return this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      ResponseEntity<T> entity = this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -597,7 +649,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(extractResponseType(responseType));
     event.begin();
     try {
-      return this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      ResponseEntity<T> entity = this.delegate.exchange(url, method, requestEntity, responseType, uriVariables);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -614,7 +668,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(extractResponseType(responseType));
     event.begin();
     try {
-      return this.delegate.exchange(url, method, requestEntity, responseType);
+      ResponseEntity<T> entity = this.delegate.exchange(url, method, requestEntity, responseType);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -630,7 +686,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(responseType);
     event.begin();
     try {
-      return this.delegate.exchange(requestEntity, responseType);
+      ResponseEntity<T> entity = this.delegate.exchange(requestEntity, responseType);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -646,7 +704,9 @@ public final class JfrRestOperations implements RestOperations {
     event.setResponseType(extractResponseType(responseType));
     event.begin();
     try {
-      return this.delegate.exchange(requestEntity, responseType);
+      ResponseEntity<T> entity = this.delegate.exchange(requestEntity, responseType);
+      event.setObjectCount(getObjectCount(entity));
+      return entity;
     } finally {
       event.end();
       event.commit();
@@ -666,6 +726,7 @@ public final class JfrRestOperations implements RestOperations {
       if (response != null) {
         event.setResponseType(response.getClass());
       }
+      event.setObjectCount(getObjectCount(response));
       return response;
     } finally {
       event.end();
@@ -686,6 +747,7 @@ public final class JfrRestOperations implements RestOperations {
       if (response != null) {
         event.setResponseType(response.getClass());
       }
+      event.setObjectCount(getObjectCount(response));
       return response;
     } finally {
       event.end();
@@ -706,6 +768,7 @@ public final class JfrRestOperations implements RestOperations {
       if (response != null) {
         event.setResponseType(response.getClass());
       }
+      event.setObjectCount(getObjectCount(response));
       return response;
     } finally {
       event.end();
@@ -726,6 +789,31 @@ public final class JfrRestOperations implements RestOperations {
       }
     }
     return null;
+  }
+
+  static int getObjectCount(HttpEntity<?> entity) {
+    if (entity.hasBody()) {
+      Object body = entity.getBody();
+      return getObjectCount(body);
+    } else {
+      return 0;
+    }
+  }
+
+  static int getObjectCount(Object o) {
+    if (o == null) {
+      return 0;
+    }
+    if (o instanceof Collection) {
+      return ((Collection<?>) o).size();
+    }
+    if (o instanceof Map) {
+      return ((Map<?, ?>) o).size();
+    }
+    if (o.getClass().isArray()) {
+      return Array.getLength(o);
+    }
+    return 1;
   }
 
 
@@ -749,6 +837,10 @@ public final class JfrRestOperations implements RestOperations {
     @Label("Response Type")
     @Description("The response type")
     private Class<?> responseType;
+
+    @Label("Object Count")
+    @Description("The number of objects returned")
+    private int objectCount;
 
     String getOperationName() {
       return this.operationName;
@@ -782,7 +874,14 @@ public final class JfrRestOperations implements RestOperations {
       this.responseType = responseType;
     }
 
-  }
+    int getObjectCount() {
+      return objectCount;
+    }
 
+    void setObjectCount(int objectCount) {
+      this.objectCount = objectCount;
+    }
+
+  }
 
 }
