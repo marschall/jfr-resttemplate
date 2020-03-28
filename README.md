@@ -11,7 +11,7 @@ An implementation of Spring [RestTemplate](https://docs.spring.io/spring-framewo
 <dependency>
   <groupId>com.github.marschall</groupId>
   <artifactId>jfr-resttemplate</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
