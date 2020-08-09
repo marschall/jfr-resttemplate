@@ -816,7 +816,6 @@ public final class JfrRestOperations implements RestOperations {
     return 1;
   }
 
-
   @Label("Operation")
   @Description("A REST Operation")
   @Category("Spring REST")
@@ -875,7 +874,7 @@ public final class JfrRestOperations implements RestOperations {
     }
 
     int getObjectCount() {
-      return objectCount;
+      return this.objectCount;
     }
 
     void setObjectCount(int objectCount) {
