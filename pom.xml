@@ -67,7 +67,7 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-framework-bom</artifactId>
-        <version>5.3.7</version>
+        <version>5.3.8</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -167,7 +167,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>1.6</version>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -179,7 +179,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
