@@ -6,12 +6,13 @@ An implementation of Spring [RestTemplate](https://docs.spring.io/spring-framewo
 
 ![Flight Recording of some HTTP requests](https://github.com/marschall/jfr-resttemplate/raw/master/src/main/javadoc/Screenshot.png)
 
+Versions 2.x are for Spring 6, versions 1.x are for Spring 5.
 
 ```xml
 <dependency>
   <groupId>com.github.marschall</groupId>
   <artifactId>jfr-resttemplate</artifactId>
-  <version>0.2.1</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
